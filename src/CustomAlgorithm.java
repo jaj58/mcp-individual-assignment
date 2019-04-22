@@ -1,41 +1,57 @@
 import java.sql.Time;
+import java.util.Random;
 
 public class CustomAlgorithm {
-    private final long max_length = 1000000000;
-    private final long min_length = 100000000;
+    private final long maxLength = 1000000000;
+    private final long minLength = 100000000;
+    private final int minRandomLength = 999999;
+    private final int maxRandomLength = 9999999;
+    private int standardMultiplier;
+    private int highMultiplier;
+    private int longMultiplier;
+    private int coachMultiplier;
+    private int bikeMultiplier;
+
 
     public CustomAlgorithm() {
+        Random random = new Random();
+
+        standardMultiplier = (minRandomLength + random.nextInt((maxRandomLength - minRandomLength) + 1));
+        highMultiplier = (minRandomLength + random.nextInt((maxRandomLength - minRandomLength) + 1));
+        longMultiplier = (minRandomLength + random.nextInt((maxRandomLength - minRandomLength) + 1));
+        coachMultiplier = (minRandomLength + random.nextInt((maxRandomLength - minRandomLength) + 1));
+        bikeMultiplier = (minRandomLength + random.nextInt((maxRandomLength - minRandomLength) + 1));
     }
 
     long generateReceiptNumber(String vehicleRegistration, VehicleType vehicleType, Time startTime, int parkingZone, int parkingSpace){
         long result = convertStringToInt(vehicleRegistration);
-        int multiplier = 1;
+        long multiplier = 1;
         switch(vehicleType){
             case STANDARD:
-                multiplier = 1000000;
+                multiplier = standardMultiplier;
                 break;
             case HIGH:
-                multiplier = 1100000;
+                multiplier = highMultiplier;
                 break;
             case LONG:
-                multiplier = 1200000;
+                multiplier = longMultiplier;
                 break;
             case COACH:
-                multiplier = 1300000;
+                multiplier = coachMultiplier;
                 break;
             case BIKE:
-                multiplier = 1400000;
+                multiplier = bikeMultiplier;
                 break;
         }
         result = (result * (multiplier + parkingSpace + parkingZone));
 
 
         //we want consistent 9 digit receipt number so let's clamp it....
-        while(result < min_length){
+        while(result < minLength){
             result = result * 10;
         }
 
-        while(result > max_length){
+        while(result > maxLength){
             result = result / 10;
         }
         return result;
