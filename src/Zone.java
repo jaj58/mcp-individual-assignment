@@ -17,12 +17,12 @@ public class Zone {
     /**
      * the number of the zone, makes it easier to identify which zone is which (could use names instead)
      */
-    private int zoneNumber;
+    private ZoneType zoneNumber;
     /**
      * @param amountOfSpaces sets the total amount of spaces the zone has
      * @param zoneNumber assigns the zone a number so we can identify it easier
      */
-    public Zone(int amountOfSpaces, int zoneNumber){
+    public Zone(int amountOfSpaces, ZoneType zoneNumber){
         setZoneNumber(zoneNumber);
         setAmountOfSpaces(amountOfSpaces);
 
@@ -139,14 +139,14 @@ public class Zone {
     /**
      * @return the zone's assigned number
      */
-    public int getZoneNumber() {
+    public ZoneType getZoneNumber() {
         return zoneNumber;
     }
 
     /**
      * @param zoneNumber sets the zones number to input
      */
-    public void setZoneNumber(int zoneNumber) {
+    public void setZoneNumber(ZoneType zoneNumber) {
         this.zoneNumber = zoneNumber;
     }
 }

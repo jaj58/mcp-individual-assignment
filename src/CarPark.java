@@ -14,6 +14,8 @@ public class CarPark {
      */
     private ArrayList<Attendant> attendants;
 
+    private long receiptNumbers[];
+
     private ArrayList<Zone> zones;
 
     /**
@@ -27,24 +29,24 @@ public class CarPark {
      * setup our different vehicle zones
      */
     void setupZones(){
-        Zone zone1 = new Zone(30, 1);
+        Zone zone1 = new Zone(30, ZoneType.ZONE_1);
         zone1.addAllowedVehicleType(VehicleType.STANDARD);
         zone1.addAllowedVehicleType(VehicleType.HIGH);
         zones.add(zone1);
 
-        Zone zone2 = new Zone(15, 2);
+        Zone zone2 = new Zone(15, ZoneType.ZONE_2);
         zone2.addAllowedVehicleType(VehicleType.LONG);
         zones.add(zone2);
 
-        Zone zone3 = new Zone( 15, 3);
+        Zone zone3 = new Zone( 15, ZoneType.ZONE_3);
         zone3.addAllowedVehicleType(VehicleType.COACH);
         zones.add(zone3);
 
-        Zone zone4 = new Zone( 15, 4);
+        Zone zone4 = new Zone( 15, ZoneType.ZONE_4);
         zone4.addAllowedVehicleType(VehicleType.STANDARD);
         zones.add(zone4);
 
-        Zone zone5 = new Zone( 15, 5);
+        Zone zone5 = new Zone( 15, ZoneType.ZONE_5);
         zone5.addAllowedVehicleType(VehicleType.BIKE);
         zones.add(zone5);
     }
@@ -86,8 +88,6 @@ public class CarPark {
         user.getReceipt().getStartTime();
         user.getReceipt().getParkingZone();
         user.getReceipt().getParkingSpace();
-
-
 
 
         return 1;

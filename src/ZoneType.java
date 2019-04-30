@@ -1,4 +1,4 @@
-public enum ZonesType {
+public enum ZoneType {
     ZONE_1,
     ZONE_2,
     ZONE_3,

@@ -1,5 +1,6 @@
-import java.sql.Time;
-import java.time.LocalTime;/**
+import java.util.Calendar;
+
+/**
     * the receipt is used to give the customers a way to pay for their car to be parked and then leave the car park
     */
 public class Receipt {
@@ -14,7 +15,7 @@ public class Receipt {
     /**
      * the vehicles parking zone (where the space is located)
      */
-    private int parkingZone;
+    private ZoneType parkingZone;
     /**
      * the vehicles parking space
      */
@@ -27,25 +28,25 @@ public class Receipt {
     /**
      * the start time, time the vehicle was parked
      */
-    private Time startTime;
+    private Calendar startTime;
     /**
      * the end time, time the payment was being made...
      */
-    private Time endTime;
+    private Calendar endTime;
     /**
      * @param vehicleRegistration the registration number of the vehicle
      * @param vehicleType the type of vehicle, used to assign a correct space.
      * @param parkingZone the zone the parking space of the vehicle is in
      * @param parkingSpace the parking space of the vehicle
      */
-    public Receipt(String vehicleRegistration, VehicleType vehicleType,int parkingZone, int parkingSpace) {
+    public Receipt(String vehicleRegistration, VehicleType vehicleType, ZoneType parkingZone, int parkingSpace) {
        setVehicleRegistration(vehicleRegistration);
        setVehicleType(vehicleType);
        setParkingZone(parkingZone);
        setParkingSpace(parkingSpace);
 
        //set the initial parking time to when we create the receipt...
-        setStartTime(Time.valueOf(LocalTime.now()));
+        setStartTime(Calendar.getInstance());
     }
     /**
      * @return the vehicle registration number
@@ -86,25 +87,25 @@ public class Receipt {
     /**
      * @return the time the vehicle was parked initially
      */
-    public Time getStartTime() {
+    public Calendar getStartTime() {
         return startTime;
     }
     /**
      * @param startTime sets the time the vehicle was parked initially
      */
-    public void setStartTime(Time startTime) {
+    public void setStartTime(Calendar startTime) {
         this.startTime = startTime;
     }
     /**
      * @return gets the time the car was retrieved from the car park so we can calculate how much it will cost
      */
-    public Time getEndTime() {
+    public Calendar getEndTime() {
         return endTime;
     }
     /**
      * @param endTime sets the end time (so when car was retrieved/ they are paying for the parking)
      */
-    public void setEndTime(Time endTime) {
+    public void setEndTime(Calendar endTime) {
         this.endTime = endTime;
     }
 
@@ -124,14 +125,14 @@ public class Receipt {
     /**
      * @return the zone the vehicle is parked in
      */
-    public int getParkingZone() {
+    public ZoneType getParkingZone() {
         return parkingZone;
     }
 
     /**
      * @param parkingZone sets the zone the vehicle is parked in to user input
      */
-    public void setParkingZone(int parkingZone) {
+    public void setParkingZone(ZoneType parkingZone) {
         this.parkingZone = parkingZone;
     }
 }
