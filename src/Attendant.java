@@ -4,6 +4,11 @@ public class Attendant extends User {
      */
     private boolean isBusy = false;
 
+    /**
+     * used to keep track if a attendant is currently off sick
+     */
+    private boolean isSick = false;
+
 
     /**
      * @return if the attendant is currently doing a job/roaming
@@ -16,5 +21,19 @@ public class Attendant extends User {
      */
     public void setBusy(boolean busy) {
         this.isBusy = busy;
+    }
+
+    /**
+     * @return if the attendant is currently off sick...
+     */
+    public boolean isSick() {
+        return isSick;
+    }
+
+    /**
+     * @param sick sets if a a attendant is off sick or not
+     */
+    public void setSick(boolean sick) {
+        isSick = sick;
     }
 }

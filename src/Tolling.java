@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Scanner;
 
@@ -23,6 +24,26 @@ public class Tolling {
 
 
     boolean pay(double amount){
+        System.out.print("amount to pay = £");
+        System.out.println(amount);
+        Scanner scan = new Scanner(System.in);
+        int amountPayed = scan.nextInt();
+        if(amountPayed == amount){
+            System.out.println("payed in full, please take receipt");
+            return true;
+        }
+        else if(amountPayed > amount){
+            System.out.print("payed in full, please take receipt + your change (£");
+            System.out.print(amountPayed - amount);
+            System.out.println(")");
+            return true;
+        }
+        else if(amountPayed < amount){
+            System.out.print("haven't payed the full amount, please pay the rest of the amount owed (£");
+            System.out.print(amount - amountPayed);
+            System.out.println(")");
+            return false;
+        }
         return false;
     }
     double amountToPay(Receipt receipt){

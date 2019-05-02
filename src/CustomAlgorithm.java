@@ -1,4 +1,3 @@
-import java.sql.Time;
 import java.util.Random;
 
 public class CustomAlgorithm {

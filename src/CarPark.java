@@ -62,27 +62,27 @@ public class CarPark {
         attendants.add(newAttendant);
     }
 
-    /**
-    todo:
-     need to properly handle if the vehicleType is invalid instead of just returning a null receipt...
-     */
-
-    Receipt pickUpVehicle(Receipt receipt){
+    boolean pickUpVehicle(Receipt receipt){
         //attendant can't handle the picking up of these types of vehicles
         if(receipt.getVehicleType() == VehicleType.BIKE || receipt.getVehicleType()  == VehicleType.COACH){
-            return null;
+            return false;
         }
 
         for(Attendant attendant : getAttendants()){
             if(!attendant.isBusy()) { //we have a non busy attendant to complete this job
                 attendant.setBusy(true); //now doing a job so is busy.
-                attendant.setReceipt(receipt);
-                receipt.setEndTime(Calendar.getInstance());
+                //fetch the customers vehicle and then bring it to them by the entrance...
+                return true;
             }
         }
 
-        return null;
+        //no available attendant please collect vehicle yourself ya lazy sod.
+        return false;
     }
+    /**
+     todo:
+     need to properly handle if the vehicleType is invalid instead of just returning a null receipt...
+     */
 
     Receipt dropOffVehicle(VehicleType vehicleType, String vehicleRegistration) {
 
