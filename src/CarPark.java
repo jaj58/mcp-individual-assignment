@@ -15,6 +15,10 @@ public class CarPark {
      */
     private ArrayList<Attendant> attendants;
 
+    /**
+     * we could use this ot make sure that we dont use any receipt numbers more than once, although this is very very unlikely to
+     * happen it could so it's best to be extra careful and fix this issue with a simple check for now....
+     */
     private long receiptNumbers[];
 
     private ArrayList<Zone> zones;
