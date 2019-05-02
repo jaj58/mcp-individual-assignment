@@ -23,7 +23,7 @@ public class Receipt {
     /**
      * the receipt number, this is used to pay for the parking and leave
      */
-    private int number;
+    private long number;
 
     /**
      * the start time, time the vehicle was parked
@@ -75,13 +75,13 @@ public class Receipt {
     /**
      * @return the receipt number
      */
-    public int getNumber() {
+    public long getNumber() {
         return number;
     }
     /**
      * @param number sets the receipt number
      */
-    public void setNumber(int number) {
+    public void setNumber(long number) {
         this.number = number;
     }
     /**

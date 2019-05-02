@@ -23,10 +23,10 @@ public class CustomAlgorithm {
         bikeMultiplier = (minRandomLength + random.nextInt((maxRandomLength - minRandomLength) + 1));
     }
 
-    long generateReceiptNumber(String vehicleRegistration, VehicleType vehicleType, Time startTime, int parkingZone, int parkingSpace){
-        long result = convertStringToInt(vehicleRegistration);
+    long generateReceiptNumber(Receipt receipt){
+        long result = convertStringToInt(receipt.getVehicleRegistration());
         long multiplier = 1;
-        switch(vehicleType){
+        switch(receipt.getVehicleType()){
             case STANDARD:
                 multiplier = standardMultiplier;
                 break;
@@ -43,14 +43,13 @@ public class CustomAlgorithm {
                 multiplier = bikeMultiplier;
                 break;
         }
-        result = (result * (multiplier + parkingSpace + parkingZone));
+        result = (result * (multiplier + receipt.getParkingSpace())); //could use parking zone as well here but kinda overkill...
 
 
-        //we want consistent 9 digit receipt number so let's clamp it....
+        //we want a consistent 9 digit receipt number so let's clamp it, not cleanest solution but it works..
         while(result < minLength){
             result = result * 10;
         }
-
         while(result > maxLength){
             result = result / 10;
         }

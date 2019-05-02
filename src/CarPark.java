@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class CarPark {
     /**
@@ -60,10 +61,34 @@ public class CarPark {
         Attendant newAttendant = new Attendant();
         attendants.add(newAttendant);
     }
+
+    /**
+    todo:
+     need to properly handle if the vehicleType is invalid instead of just returning a null receipt...
+     */
+
+    Receipt pickUpVehicle(Receipt receipt){
+        //attendant can't handle the picking up of these types of vehicles
+        if(receipt.getVehicleType() == VehicleType.BIKE || receipt.getVehicleType()  == VehicleType.COACH){
+            return null;
+        }
+
+        for(Attendant attendant : getAttendants()){
+            if(!attendant.isBusy()) { //we have a non busy attendant to complete this job
+                attendant.setBusy(true); //now doing a job so is busy.
+                attendant.setReceipt(receipt);
+                receipt.setEndTime(Calendar.getInstance());
+            }
+        }
+
+        return null;
+    }
+
     Receipt dropOffVehicle(VehicleType vehicleType, String vehicleRegistration) {
 
         //attendant can't handle the parking of these types of vehicles
         if(vehicleType == VehicleType.BIKE || vehicleType == VehicleType.COACH){
+            return null;
         }
 
         for (Attendant attendant: getAttendants()) {
@@ -82,15 +107,9 @@ public class CarPark {
         return null;
     }
 
-    int generateReceiptNumber(User user){
-        user.getReceipt().getVehicleRegistration();
-        user.getReceipt().getVehicleType();
-        user.getReceipt().getStartTime();
-        user.getReceipt().getParkingZone();
-        user.getReceipt().getParkingSpace();
-
-
-        return 1;
+    long generateReceiptNumber(User user){
+        CustomAlgorithm customAlgorithm = new CustomAlgorithm();
+        return customAlgorithm.generateReceiptNumber(user.getReceipt());
     }
 
     Zone fetchValidZone(User user){
